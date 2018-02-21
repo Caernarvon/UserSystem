@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Dreamerk
@@ -10,7 +11,5 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-    Hello
-</body>
+Hello
 </html>

@@ -64,7 +64,7 @@
                     </httpConnector>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>user-system</contextPath>
+                        <contextPath>/user-system</contextPath>
                     </webApp>
                 </configuration>
             </plugin>
