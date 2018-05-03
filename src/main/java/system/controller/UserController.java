@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import system.dao.UserDao;
 import system.model.User;
 import system.service.UserService;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,9 +37,30 @@ public class UserController {
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
     public @ResponseBody String checkUser(@ModelAttribute("userFromServer") User user){
-        if ("admin".equals(user.getName()) && "admin".equals(user.getPassword())) {
-            return "valid";
+        try {
+            return userService.check(user);
         }
-        return "invalid";
+        catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView registerUser(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("newUser", new User());
+        modelAndView.setViewName("users_register_page");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/registerNewUser", method = RequestMethod.POST)
+    public @ResponseBody String registerUser(@ModelAttribute("newUser") User user) {
+        try{
+            userService.addUser(user);
+            return "successful";
+        }
+        catch (Exception e) {
+            return "failed to register";
+        }
     }
 }
