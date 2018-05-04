@@ -60,7 +60,7 @@ public class UserController {
             return "successful";
         }
         catch (Exception e) {
-            return "failed to register";
+            return e.toString();
         }
     }
 }
