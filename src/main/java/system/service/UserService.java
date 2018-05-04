@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public void addUser(User user) {
-        userDao.getUsers().add(user);
+        userDao.addUser(user);
     }
 
     public String check (User user) {
@@ -38,9 +38,7 @@ public class UserService {
             if(!userIsFound) {
                 result = "user isn't found";
             }
-
         }
         return result;
     }
-
 }
