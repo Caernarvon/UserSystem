@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import system.dao.UserDao;
 import system.model.User;
 import system.service.UserService;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
