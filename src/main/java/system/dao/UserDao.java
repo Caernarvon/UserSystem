@@ -19,6 +19,8 @@ public class UserDao {
     private final String PASSWORD = "root";
     private final String URL = "jdbc:postgresql://localhost:5432/users";
 
+    private List<User> users = new ArrayList<User>();
+
     private BasicDataSource getDataSource() {
         if (dataSource == null) {
             synchronized (this) {
@@ -33,8 +35,6 @@ public class UserDao {
         }
         return dataSource;
     }
-
-    private List<User> users = new ArrayList<User>();
 
     public List<User> getUsers() throws SQLException {
         try {
