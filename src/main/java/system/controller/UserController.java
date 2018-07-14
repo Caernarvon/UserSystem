@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import system.model.User;
 import system.service.UserService;
+
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -19,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ResponseBody List<User> getAllUsers(){
+    public @ResponseBody List<User> getAllUsers() throws SQLException {
         return userService.getUsers();
     }
 
