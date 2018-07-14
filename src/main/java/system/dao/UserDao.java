@@ -1,20 +1,14 @@
 package system.dao;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import system.model.User;
-import javax.activation.DataSource;
-import java.beans.PropertyVetoException;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class UserDao {
-
-    //TODO Autowired database, work w. connection pool
 
     @Autowired
     private static UserDao userDao;
