@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import system.dao.UserDao;
 import system.model.User;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public List getUsers(){
+    public List getUsers() throws SQLException {
         return userDao.getUsers();
     }
 
@@ -20,7 +22,7 @@ public class UserService {
         userDao.addUser(user);
     }
 
-    public String check (User user) {
+    public String check (User user) throws SQLException {
         String result = "";
         boolean userIsFound = false;
         if (userDao.getUsers().isEmpty()) {
