@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Validate</title>
 </head>
 <body>
     <spring:form modelAttribute="userFromServer" method="post" action="/user-system/users/check">
@@ -17,5 +17,6 @@
         <spring:input path="password"/>
         <spring:button>check user</spring:button>
     </spring:form>
+
 </body>
 </html>

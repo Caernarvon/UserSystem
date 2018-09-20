@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ResponseBody List<User> getAllUsers() throws SQLException {
+    public @ResponseBody List<User> getAllUsers() {
         return userService.getUsers();
     }
 

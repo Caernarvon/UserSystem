@@ -14,14 +14,14 @@ public class UserDao {
     private static UserDao userDao;
 
     private BasicDataSource dataSource;
-    private final String DRIVER = "org.postgresql.Driver";
-    private final String USER = "postgres";
-    private final String PASSWORD = "root";
-    private final String URL = "jdbc:postgresql://localhost:5432/users";
-
-    private List<User> users = new ArrayList<User>();
 
     private BasicDataSource getDataSource() {
+
+        final String DRIVER = "org.postgresql.Driver";
+        final String USER = "postgres";
+        final String PASSWORD = "root";
+        final String URL = "jdbc:postgresql://localhost:5432/users";
+
         if (dataSource == null) {
             synchronized (this) {
                 if (dataSource == null) {
@@ -36,11 +36,12 @@ public class UserDao {
         return dataSource;
     }
 
-    public List<User> getUsers() throws SQLException {
-        try {
-            Connection connection = getDataSource().getConnection();
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM public.\"Users\"");
-            ResultSet rs = pstmt.executeQuery();
+    public List<User> getUsers() {
+        List<User> users = new ArrayList<User>();
+        try ( Connection connection = getDataSource().getConnection();
+              PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM public.\"Users\"");
+              ResultSet rs = pstmt.executeQuery(); ) {
+
             while (rs.next()) {
                 User user = new User(rs.getString(1), rs.getString(2));
                 users.add(user);
@@ -53,10 +54,10 @@ public class UserDao {
     }
 
     public void addUser(User user) {
-        try {
-            Connection connection = getDataSource().getConnection();
-            PreparedStatement pstmt =
-                    connection.prepareStatement("INSERT INTO public.\"Users\"(username, password) VALUES (?,?)");
+        try (Connection connection = getDataSource().getConnection();
+             PreparedStatement pstmt =
+                     connection.prepareStatement
+                             ("INSERT INTO public.\"Users\"(username, password) VALUES (?,?)");) {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getPassword());
             pstmt.executeUpdate();

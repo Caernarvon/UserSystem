@@ -11,10 +11,11 @@ import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserDao userDao;
 
-    public List getUsers() throws SQLException {
+    public List getUsers() {
         return userDao.getUsers();
     }
 
@@ -22,7 +23,7 @@ public class UserService {
         userDao.addUser(user);
     }
 
-    public String check (User user) throws SQLException {
+    public String check (User user) {
         String result = "";
         boolean userIsFound = false;
         if (userDao.getUsers().isEmpty()) {
